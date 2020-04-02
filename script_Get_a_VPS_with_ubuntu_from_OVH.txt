@@ -1,0 +1,53 @@
+# First entrance into the VPS with Putty or the command line. 
+ssh root@260.260.260.260
+
+###################################################
+# secure the access to the server
+
+# Change the port the default 22 to 50000
+sudo nano /etc/ssh/sshd_config
+
+# Change the password for the root user with a strong password
+passwd root
+
+# Restart the server
+/etc/init.d/ssh restart
+
+# Exit the VPS
+exit
+
+# Reconnect with the new port
+ssh root@260.260.260.260 -p 50000
+
+# Add a new user
+adduser USER1
+
+# Disallow the root connexion to the server with PermitRootLogin no
+sudo nano /etc/ssh/sshd_config 
+
+# Restart the server
+/etc/init.d/ssh restart
+
+# Exit the VPS
+exit
+
+# Reconnect with the new port
+ssh USERS1@260.260.260.260 -p 50000
+
+# Connect the root user
+su root
+
+# Install Fail2ban
+apt-get install fail2ban
+
+# Copy the configuration file of fail2ban
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.backup
+
+# Add you ip adress to ignoreip in the configuration file
+sudo nano /etc/fail2ban/jail.conf
+
+# Restart the server
+/etc/init.d/ssh restart
+
+# Exit the root interface and go back to the user created 
+exit
